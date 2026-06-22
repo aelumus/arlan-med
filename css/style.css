@@ -151,7 +151,12 @@ input, textarea, select { font-family: inherit; }
 .header.hero-mode .lang-btn:hover:not(.active) { color: var(--c-white); }
 
 /* Burger */
-.burger { display: none; flex-direction: column; gap: 5px; width: 28px; cursor: pointer; padding: .4rem; }
+.burger {
+  display: none; flex-direction: column; gap: 5px; width: 28px; cursor: pointer; padding: .4rem;
+  align-items: center; justify-content: center; flex-shrink: 0;
+  min-width: 44px; min-height: 44px; border-radius: var(--radius-sm);
+  -webkit-tap-highlight-color: transparent;
+}
 .burger-line { height: 2.5px; background: var(--c-dark); border-radius: 99px; transition: all var(--transition); transform-origin: center; }
 .header.hero-mode .burger-line { background: var(--c-white); }
 .burger.open .burger-line:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
@@ -506,8 +511,26 @@ input, textarea, select { font-family: inherit; }
 @media (max-width: 900px) {
   .header__nav { display: none; }
   .header__phone span { display: none; }
-  .burger { display: flex; }
+  .header__right > .btn-primary { display: none; }
+  .header__inner { gap: .5rem; }
+  .header__logo { flex: 1; min-width: 0; }
+  .header__logo img { height: 34px; max-width: 130px; object-fit: contain; object-position: left center; }
+  .header__right { gap: .35rem; flex-shrink: 0; margin-left: auto; }
+  .lang-sw { padding: 2px; gap: 1px; }
+  .lang-btn { padding: 3px 6px; font-size: .62rem; }
+  .burger { display: flex; flex-shrink: 0; margin-left: .15rem; }
   .mobile-nav { display: block; }
+  /* Always readable header on mobile over hero */
+  .header.hero-mode {
+    background: rgba(13, 17, 23, .82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+  }
+  .mobile-nav {
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
   .stats__grid { grid-template-columns: repeat(2,1fr); }
   .services-grid { grid-template-columns: repeat(2,1fr); }
   .doctors-grid { grid-template-columns: repeat(2,1fr); }
@@ -524,7 +547,10 @@ input, textarea, select { font-family: inherit; }
 }
 
 @media (max-width: 600px) {
-  :root { --header-h: 60px; }
+  :root { --header-h: 56px; }
+  .header__logo img { height: 30px; max-width: 110px; }
+  .header__phone svg { width: 18px; height: 18px; }
+  .burger { width: 32px; padding: .5rem .35rem; }
   .services-grid, .brands-grid, .gallery-grid, .reviews-grid { grid-template-columns: 1fr; }
   .doctors-grid { grid-template-columns: repeat(2,1fr); }
   .stats__grid { grid-template-columns: repeat(2,1fr); }
