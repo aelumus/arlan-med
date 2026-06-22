@@ -39,7 +39,7 @@
 
 /* ===== RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); overflow-x: hidden; }
 body { font-family: var(--font); font-size: 16px; line-height: 1.6; color: var(--c-text); background: var(--c-bg); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 img { max-width: 100%; height: auto; display: block; }
 a { text-decoration: none; color: inherit; }
@@ -53,7 +53,7 @@ input, textarea, select { font-family: inherit; }
 ::-webkit-scrollbar-thumb { background: var(--c-primary); border-radius: 99px; }
 
 /* ===== LAYOUT ===== */
-.container { max-width: var(--container); margin: 0 auto; padding: 0 var(--pad); }
+.container { max-width: var(--container); margin: 0 auto; padding: 0 var(--pad); overflow-x: clip; }
 .section { padding: clamp(4rem, 8vw, 6rem) 0; }
 .section--gray { background: var(--c-bg-2); }
 .section--dark { background: var(--c-dark-bg); color: var(--c-white); }
@@ -222,8 +222,8 @@ input, textarea, select { font-family: inherit; }
 /* ===== STATS ===== */
 .stats { padding: 2.5rem 0; background: var(--c-white); border-bottom: 1px solid var(--c-border); }
 .stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-.stat { text-align: center; padding: 2rem 1rem; border-radius: var(--radius-xl); background: var(--c-bg-2); position: relative; overflow: hidden; transition: transform var(--transition); }
-.stat::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:var(--c-gradient); }
+.stat { text-align: center; padding: 2rem 1rem; border-radius: var(--radius-xl); background: var(--c-bg-2); position: relative; overflow: visible; transition: transform var(--transition); }
+.stat::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:var(--c-gradient); border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
 .stat:hover { transform: translateY(-4px); }
 .stat__num { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900; background: var(--c-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: .4rem; }
 .stat__lbl { font-size: .85rem; font-weight: 500; color: var(--c-text-muted); }
@@ -505,6 +505,46 @@ input, textarea, select { font-family: inherit; }
 .price-item__name { font-size: .875rem; color: var(--c-text); }
 .price-item__val { font-size: .875rem; font-weight: 700; color: var(--c-primary); }
 
+/* ===== RESPONSIVE GRIDS ===== */
+.about-main-grid,
+.about-brands-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 5rem;
+}
+.about-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.preview-grid,
+.rating-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+.rating-summary-grid { margin-bottom: 4rem; }
+.brand-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
+  background: var(--c-bg-2);
+  border-radius: var(--radius-lg);
+}
+.brand-row > div:first-child { min-width: 0; }
+.brand-row > div:last-child { flex-shrink: 0; white-space: nowrap; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1100px) {
   .services-grid, .doctors-grid, .brands-grid { grid-template-columns: repeat(3,1fr); }
@@ -553,6 +593,12 @@ input, textarea, select { font-family: inherit; }
   .hero__links { display: none; }
   .gallery-grid, .reviews-grid { grid-template-columns: repeat(2,1fr); }
   .about-values { grid-template-columns: 1fr; }
+  .about-main-grid,
+  .about-brands-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .preview-grid,
+  .rating-summary-grid { grid-template-columns: repeat(2, 1fr); }
   .service-detail { grid-template-columns: 1fr; }
   .service-detail--reverse { direction: ltr; }
   .contacts-map-grid { grid-template-columns: 1fr; }
@@ -564,9 +610,22 @@ input, textarea, select { font-family: inherit; }
   .header__logo img { height: 30px; max-width: 110px; }
   .header__phone svg { width: 18px; height: 18px; }
   .burger { width: 32px; padding: .5rem .35rem; }
+  .about-main-grid,
+  .about-brands-grid { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; }
+  .about-stats-grid { grid-template-columns: repeat(2, 1fr); gap: .75rem; margin-bottom: 3rem; }
+  .about-gallery-grid { grid-template-columns: 1fr; }
+  .preview-grid,
+  .rating-summary-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .rating-summary-grid > div { padding: 1.5rem 1rem !important; }
+  .stat { padding: 1rem .5rem; }
+  .stat__num { font-size: clamp(1.4rem, 6vw, 1.75rem); }
+  .stat__lbl { font-size: .7rem; line-height: 1.35; }
+  .s-title { font-size: clamp(1.35rem, 5.5vw, 1.75rem); overflow-wrap: anywhere; }
+  .brand-row { flex-wrap: wrap; }
+  .brand-row > div:last-child { white-space: normal; }
   .services-grid, .brands-grid, .gallery-grid, .reviews-grid { grid-template-columns: 1fr; }
-  .doctors-grid { grid-template-columns: repeat(2,1fr); }
-  .stats__grid { grid-template-columns: repeat(2,1fr); }
+  .doctors-grid { grid-template-columns: 1fr !important; }
+  .stats__grid { grid-template-columns: repeat(2, 1fr); gap: .75rem; }
   .hero__btns { flex-direction: column; }
   .hero__btns .btn { width: 100%; }
   .cta-btns { flex-direction: column; align-items: center; }
@@ -574,8 +633,12 @@ input, textarea, select { font-family: inherit; }
   .modal { padding: 1.5rem; }
   .price-tabs { gap: .35rem; }
   .price-tab { font-size: .75rem; padding: .5rem .9rem; }
+  .section { padding: 3rem 0; }
+  .reveal-left, .reveal-right { transform: translateY(20px); }
+  .reveal-left.visible, .reveal-right.visible { transform: none; }
 }
 
 @media (max-width: 380px) {
-  .doctors-grid { grid-template-columns: 1fr; }
+  .about-stats-grid,
+  .stats__grid { grid-template-columns: 1fr 1fr; }
 }

@@ -67,7 +67,7 @@
 <!-- ABOUT MAIN -->
 <section class="section">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:5rem" class="about-main-grid">
+    <div class="about-main-grid">
       <div class="reveal-left">
         <div class="s-badge" style="margin-bottom:1rem" data-i18n="about_us_badge">О нас</div>
         <h2 class="s-title" style="margin-bottom:1.5rem" data-i18n-html="about_us_title_html">Более <span class="hl">тысячи пациентов</span> доверяют нам</h2>
@@ -89,7 +89,7 @@
     </div>
 
     <!-- Stats -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-bottom:5rem" class="reveal">
+    <div class="about-stats-grid reveal">
       <div class="stat"><div class="stat__num">4</div><div class="stat__lbl" data-i18n="stat_branches_sub">по всему Алматы</div></div>
       <div class="stat"><div class="stat__num">10+</div><div class="stat__lbl" data-i18n="stat_doctors_sub">в команде</div></div>
       <div class="stat"><div class="stat__num">1000+</div><div class="stat__lbl" data-i18n="about_patients_stat">довольных пациентов</div></div>
@@ -129,7 +129,7 @@
     </div>
 
     <!-- Implants section -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:5rem">
+    <div class="about-brands-grid">
       <div class="reveal-left" style="border-radius:24px;overflow:hidden;box-shadow:var(--shadow-xl);aspect-ratio:4/3">
         <img src="img/clinic/оборудование.jpeg" alt="Оборудование Arlan Med" style="width:100%;height:100%;object-fit:cover">
       </div>
@@ -138,16 +138,16 @@
         <h2 class="s-title" style="margin-bottom:1.5rem" data-i18n-html="brands_title_html">Лучшие мировые <span class="hl">бренды</span></h2>
         <p style="color:var(--c-text-muted);line-height:1.75;margin-bottom:2rem" data-i18n="brands_sub">Мы предлагаем выбор из 4 ведущих производителей имплантов под разный бюджет и клинический случай.</p>
         <div style="display:flex;flex-direction:column;gap:.75rem">
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;background:var(--c-bg-2);border-radius:var(--radius-lg)">
+          <div class="brand-row">
             <div style="font-weight:700">🇰🇷 MegaGen AnyRidge</div><div style="color:var(--c-primary);font-weight:700" data-i18n="brand_megagen_note">от 200 000 тг</div>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;background:var(--c-bg-2);border-radius:var(--radius-lg)">
+          <div class="brand-row">
             <div style="font-weight:700">🇰🇷 Osstem</div><div style="color:var(--c-primary);font-weight:700" data-i18n="brand_osstem_note">от 150 000 тг</div>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;background:var(--c-bg-2);border-radius:var(--radius-lg)">
+          <div class="brand-row">
             <div style="font-weight:700">🇰🇷 Dio</div><div style="color:var(--c-primary);font-weight:700" data-i18n="brand_dio_note">от 70 000 тг</div>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;background:var(--c-bg-2);border-radius:var(--radius-lg)">
+          <div class="brand-row">
             <div style="font-weight:700">🇨🇭 Straumann</div><div style="color:var(--c-primary);font-weight:700" data-i18n="brand_straumann_note">от 350 000 тг</div>
           </div>
         </div>
@@ -177,7 +177,7 @@
       <h2 class="s-title" data-i18n-html="about_interior_title">Наша <span class="hl">клиника</span></h2>
       <p class="s-subtitle" data-i18n="about_interior_sub">Современное оборудование и комфортная атмосфера</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem" class="reveal">
+    <div class="about-gallery-grid reveal">
       <div style="border-radius:18px;overflow:hidden;aspect-ratio:4/3;box-shadow:var(--shadow-md)">
         <img src="img/clinic/кресло стоматологии.jpeg" alt="Кресло" style="width:100%;height:100%;object-fit:cover;transition:transform .5s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
       </div>
@@ -276,8 +276,5 @@
 
 <script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
-<style>
-  @media(max-width:768px){.about-main-grid{grid-template-columns:1fr!important}}
-</style>
 </body>
 </html>
