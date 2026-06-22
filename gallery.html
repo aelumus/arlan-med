@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>До и После — Arlan Med Стоматология Алматы</title>
+  <meta name="description" content="Реальные результаты лечения в клинике Arlan Med Алматы. Фото до и после: имплантация, восстановление зубов, лечение кариеса.">
+  <link rel="icon" type="image/svg+xml" href="img/Logo/Logotype_ArlanMed.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .gallery-card {
+      background: var(--c-white);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+    .gallery-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-xl);
+    }
+    .gallery-card__img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .gallery-card__label {
+      padding: 1rem 1.25rem;
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--c-dark);
+      background: var(--c-white);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .gallery-card__cat {
+      font-size: .72rem;
+      padding: .25rem .65rem;
+      border-radius: 99px;
+      background: linear-gradient(135deg,rgba(30,111,192,.1),rgba(75,170,235,.1));
+      color: var(--c-primary);
+      font-weight: 700;
+    }
+
+    /* Lightbox */
+    .lb-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.92);
+      z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s ease;
+      padding: 1.5rem;
+    }
+    .lb-overlay.open { opacity: 1; pointer-events: all; }
+    .lb-overlay img {
+      max-width: 90vw; max-height: 90vh;
+      border-radius: var(--radius-xl);
+      object-fit: contain;
+      box-shadow: 0 30px 80px rgba(0,0,0,.5);
+    }
+    .lb-close {
+      position: fixed; top: 1rem; right: 1.5rem;
+      font-size: 2rem; color: #fff; cursor: pointer;
+      background: rgba(255,255,255,.1); border-radius: 50%;
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .lb-close:hover { background: rgba(255,255,255,.25); }
+    .lb-nav {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      font-size: 2.5rem; color: #fff; cursor: pointer;
+      background: rgba(255,255,255,.1); border-radius: 50%;
+      width: 54px; height: 54px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s; user-select: none;
+    }
+    .lb-nav:hover { background: rgba(255,255,255,.25); }
+    .lb-prev { left: 1rem; }
+    .lb-next { right: 1rem; }
+
+    @media(max-width:900px){ .gallery-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:550px){ .gallery-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo"><img src="img/Logo/Logotype_ArlanMed.svg" alt="Arlan Med" onerror="this.src='img/Logo/Logotype_ArlanMed.png'"></a>
+      <nav class="header__nav">
+        <a href="index.html" class="nav-link" data-i18n="nav_home" data-i18n="nav_home">Главная</a>
+        <a href="about.html" class="nav-link" data-i18n="nav_about" data-i18n="nav_about">О клинике</a>
+        <a href="services.html" class="nav-link" data-i18n="nav_services" data-i18n="nav_services">Услуги</a>
+        <a href="doctors.html" class="nav-link" data-i18n="nav_doctors" data-i18n="nav_doctors">Врачи</a>
+        <a href="price.html" class="nav-link" data-i18n="nav_price" data-i18n="nav_price">Прайс</a>
+        <a href="gallery.html" class="nav-link active" data-i18n="nav_gallery" data-i18n="nav_gallery">До/После</a>
+        <a href="reviews.html" class="nav-link" data-i18n="nav_reviews" data-i18n="nav_reviews">Отзывы</a>
+        <a href="contacts.html" class="nav-link" data-i18n="nav_contacts" data-i18n="nav_contacts">Контакты</a>
+      </nav>
+      <div class="header__right">
+        <a href="tel:+77011880101" class="header__phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.25 9.09a2 2 0 012-1.78h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.08 6.08l1.75-1.75a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <span>+7 701 188 0101</span>
+        </a>
+        <div class="lang-sw">
+          <button class="lang-btn active" data-lang="ru">РУ</button>
+          <button class="lang-btn" data-lang="kz">ҚАЗ</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="btn btn-primary btn-sm" data-modal data-i18n="nav_cta">Записаться</button>
+        <div class="burger" id="burger"><div class="burger-line"></div><div class="burger-line"></div><div class="burger-line"></div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav__links">
+    <a href="index.html" class="mobile-nav__link" data-i18n="nav_home" data-i18n="nav_home">Главная</a>
+    <a href="about.html" class="mobile-nav__link" data-i18n="nav_about" data-i18n="nav_about">О клинике</a>
+    <a href="services.html" class="mobile-nav__link" data-i18n="nav_services" data-i18n="nav_services">Услуги</a>
+    <a href="doctors.html" class="mobile-nav__link" data-i18n="nav_doctors" data-i18n="nav_doctors">Врачи</a>
+    <a href="price.html" class="mobile-nav__link" data-i18n="nav_price" data-i18n="nav_price">Прайс</a>
+    <a href="gallery.html" class="mobile-nav__link" data-i18n="nav_gallery" data-i18n="nav_gallery">До/После</a>
+    <a href="reviews.html" class="mobile-nav__link" data-i18n="nav_reviews" data-i18n="nav_reviews">Отзывы</a>
+    <a href="contacts.html" class="mobile-nav__link" data-i18n="nav_contacts" data-i18n="nav_contacts">Контакты</a>
+  </div>
+  <div class="mobile-nav__bottom">
+    <a href="tel:+77011880101" class="btn btn-outline" style="width:100%;justify-content:center">📞 +7 701 188 0101</a>
+    <button class="btn btn-primary" data-modal style="width:100%" data-i18n="nav_cta">Записаться на приём</button>
+  </div>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <h1 class="page-hero__title" data-i18n="gallery_title">До / После</h1>
+    <p class="page-hero__sub" data-i18n="gallery_sub">Реальные результаты работ нашей клиники</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <!-- Filter -->
+    <div class="filter-bar gallery-filter" style="justify-content:center;margin-bottom:3rem">
+      <button class="filter-btn active" data-filter="all" data-i18n="gal_filter_all">Все работы</button>
+      <button class="filter-btn" data-filter="implants" data-i18n="gal_filter_implants">Имплантация</button>
+      <button class="filter-btn" data-filter="therapy" data-i18n="gal_filter_ther">Лечение зубов</button>
+      <button class="filter-btn" data-filter="complex" data-i18n="gal_filter_complex">Комплексное</button>
+    </div>
+
+    <!-- Gallery grid -->
+    <div class="gallery-grid" id="galleryGrid">
+
+      <div class="gallery-card reveal" data-cat="complex">
+        <img class="gallery-card__img" src="img/до после/до после 1.PNG"
+             alt="Результат комплексного лечения зубов" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_complex_restor">Комплексное восстановление</span>
+          <span class="gallery-card__cat" data-i18n="gal_before_after">До/После</span>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-cat="complex">
+        <img class="gallery-card__img" src="img/до после/до после 2.PNG"
+             alt="Результат лечения" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_smile_restor">Восстановление улыбки</span>
+          <span class="gallery-card__cat" data-i18n="gal_before_after">До/После</span>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-cat="therapy">
+        <img class="gallery-card__img" src="img/до после/до после 3.PNG"
+             alt="Результат терапевтического лечения" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_ther_treatment">Терапевтическое лечение</span>
+          <span class="gallery-card__cat" data-i18n="gal_before_after">До/После</span>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-cat="complex">
+        <img class="gallery-card__img" src="img/до после/до после 4.PNG"
+             alt="Результат лечения зубов" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_complex_rehab">Комплексная реабилитация</span>
+          <span class="gallery-card__cat" data-i18n="gal_before_after">До/После</span>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-cat="implants">
+        <img class="gallery-card__img" src="img/до после/результаты вставки зубов.PNG"
+             alt="Результат имплантации зубов" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_impl_stages">Имплантация — этапы</span>
+          <span class="gallery-card__cat" data-i18n="gal_implants">Импланты</span>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-cat="implants">
+        <img class="gallery-card__img" src="img/до после/результаты вставки зубов 2.PNG"
+             alt="Финальный результат имплантации" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_impl_result">Имплантация — результат</span>
+          <span class="gallery-card__cat" data-i18n="gal_implants">Импланты</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:3rem" class="reveal">
+      <p style="color:var(--c-text-muted);margin-bottom:1.5rem" data-i18n="gal_insta_more">Больше работ смотрите в нашем Instagram</p>
+      <a href="https://www.instagram.com/arlan.med" target="_blank" class="btn btn-primary btn-lg"
+         style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border:none;box-shadow:0 8px 24px rgba(220,39,67,.3)">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> <span data-i18n="qlink_ig">@arlan.med — Открыть Instagram</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="s-title" data-i18n="cta_title">Запишитесь на приём сегодня</div>
+    <p class="s-subtitle" style="color:rgba(255,255,255,.82);margin:1rem auto 2.5rem" data-i18n="cta_sub">Первичная консультация и осмотр — бесплатно. Ответим за 5 минут.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/77011880101?text=Здравствуйте!%20Хочу%20записаться." target="_blank" class="btn btn-wa btn-lg"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</a>
+      <a href="tel:+77011880101" class="btn btn-white btn-lg">📞 +7 701 188 0101</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <div class="footer__logo"><img src="img/Logo/Logotype_ArlanMed.svg" alt="Arlan Med" onerror="this.src='img/Logo/Logotype_ArlanMed.png'"></div>
+        <p class="footer__about" data-i18n="footer_about">Сеть стоматологических клиник в Алматы. 4 филиала, 10+ врачей.</p>
+        <div class="footer__social">
+          <a href="https://www.instagram.com/arlan.med" target="_blank" class="f-social"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://www.tiktok.com/@arlanmed.dent" target="_blank" class="f-social"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 15.66a6.34 6.34 0 0010.86 4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.04-.11z"/></svg></a>
+          <a href="https://wa.me/77011880101" target="_blank" class="f-social"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__heading" data-i18n="footer_nav">Навигация</div>
+        <div class="footer__links">
+          <a href="index.html" data-i18n="nav_home" data-i18n="nav_home">Главная</a><a href="about.html" data-i18n="nav_about" data-i18n="nav_about">О клинике</a>
+          <a href="doctors.html" data-i18n="nav_doctors" data-i18n="nav_doctors">Врачи</a><a href="price.html" data-i18n="nav_price" data-i18n="nav_price">Прайс</a><a href="contacts.html" data-i18n="nav_contacts" data-i18n="nav_contacts">Контакты</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__heading" data-i18n="footer_services">Услуги</div>
+        <div class="footer__links">
+          <a href="services.html#implants" data-i18n="svc_impl_title">Имплантация</a><a href="services.html#veneers" data-i18n="svc_vin_title">Виниры</a>
+          <a href="services.html#braces" data-i18n="svc_brac_title">Брекеты</a><a href="services.html#kids" data-i18n="svc_kids_title">Детская стоматология</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__heading" data-i18n="footer_contacts">Контакты</div>
+        <div class="footer__contact-row"><span>📞</span><span><a href="tel:+77011880101" style="color:inherit">+7 701 188 0101</a></span></div>
+        <div class="footer__contact-row"><span>🕘</span><span data-i18n-html="footer_hours">С 9:00 до 24:00<br>без выходных</span></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__copy"><span data-i18n="footer_copy"><span data-i18n="footer_copy">© 2026 Arlan Med. Все права защищены.</span></span></div>
+      <div class="footer__licence"><span data-i18n="footer_licence"><span data-i18n="footer_licence">Лицензия МЗ РК № 22021394</span></span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lb-overlay" id="lb">
+  <div class="lb-close" id="lbClose">✕</div>
+  <div class="lb-nav lb-prev" id="lbPrev">‹</div>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-nav lb-next" id="lbNext">›</div>
+</div>
+
+<div class="wa-float">
+  <a href="https://wa.me/77011880101?text=Здравствуйте!" target="_blank" class="wa-float__btn">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal__head"><h3 class="modal__title" data-i18n="modal_title">Запись на приём</h3><button class="modal__close" id="modalClose">✕</button></div>
+    <form class="form" id="appointmentForm">
+      <div class="form-group"><label class="form-label" data-i18n="modal_name">Ваше имя</label><input type="text" id="modal-name" class="form-input" placeholder="Введите ваше имя" data-i18n="modal_name_ph" required></div>
+      <div class="form-group"><label class="form-label" data-i18n="modal_phone">Телефон</label><input type="tel" id="modal-phone" class="form-input" placeholder="+7 (___) ___-__-__" required></div>
+      <div class="form-group"><label class="form-label" data-i18n="modal_service">Услуга</label>
+        <select id="modal-service" class="form-select"><option value="" data-i18n="modal_service_ph">Выберите услугу</option><option value="impl" data-i18n="svc_impl_title">Имплантация</option><option value="vin" data-i18n="svc_vin_title">Виниры</option><option value="ther" data-i18n="svc_ther_title">Лечение зубов</option><option value="brac" data-i18n="svc_brac_title">Брекеты</option><option value="other" data-i18n="modal_other">Другое</option></select>
+      </div>
+      <div class="form-group"><label class="form-label" data-i18n="modal_branch">Филиал</label>
+        <select id="modal-branch" class="form-select"><option value="" data-i18n="modal_branch_ph">Любой удобный</option><option value="Серкебаева 107" data-i18n="modal_branch_serk">Серкебаева, 107</option><option value="Дарабоз 43" data-i18n="modal_branch_darab">Дарабоз, 43</option><option value="Кенесары хана 54/41" data-i18n="modal_branch_kenes">Кенесары хана, 54/41</option><option value="Халиулина 140/5 к2" data-i18n="modal_branch_hali">Халиулина, 140/5 к2</option></select>
+      </div>
+      <div class="form-group"><label class="form-label" data-i18n="modal_comment">Комментарий</label><textarea id="modal-comment" class="form-textarea" placeholder="Вопрос или пожелание..." data-i18n="modal_comment_ph"></textarea></div>
+      <button type="submit" class="btn btn-wa" style="width:100%;padding:1rem;font-size:1rem"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> <span data-i18n="modal_submit">Отправить через WhatsApp</span></button>
+    </form>
+  </div>
+</div>
+
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // Gallery filter
+  document.querySelector('.gallery-filter').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.gallery-card').forEach(c => {
+      c.style.display = (f === 'all' || c.dataset.cat === f) ? '' : 'none';
+    });
+  });
+
+  // Lightbox
+  const cards = [...document.querySelectorAll('.gallery-card')];
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lbImg');
+  let current = 0;
+
+  function openLb(idx) {
+    current = idx;
+    lbImg.src = cards[idx].querySelector('img').src;
+    lbImg.alt = cards[idx].querySelector('img').alt;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function navigate(dir) {
+    const visible = cards.filter(c => c.style.display !== 'none');
+    const visIdx = visible.findIndex(c => c.querySelector('img').src === lbImg.src);
+    const next = (visIdx + dir + visible.length) % visible.length;
+    lbImg.src = visible[next].querySelector('img').src;
+    current = cards.indexOf(visible[next]);
+  }
+
+  cards.forEach((card, i) => card.addEventListener('click', () => openLb(i)));
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', () => navigate(-1));
+  document.getElementById('lbNext').addEventListener('click', () => navigate(1));
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+  });
+</script>
+</body>
+</html>

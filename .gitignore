@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dev / build helpers (not needed on production)
+translater.js
+replacer.js
+gen-price-i18n.js
+price-keys-ru.json
+*.docx
+
+# Editor
+.vscode/
+.idea/
+*.swp
