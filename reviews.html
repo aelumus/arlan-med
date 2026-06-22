@@ -185,16 +185,16 @@
       <div class="rating-card">
         <div class="rating-card__num">4.9</div>
         <div class="rating-card__stars">★★★★★</div>
-        <div class="rating-card__label">Рейтинг на 2GIS</div>
+        <div class="rating-card__label" data-i18n="rev_rating_label">Рейтинг на 2GIS</div>
       </div>
-      <div style="background:var(--c-bg-2);border-radius:var(--radius-xl);padding:2.5rem 2rem;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:.5rem">
-        <div style="font-size:3.5rem;font-weight:900;background:var(--c-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">1000+</div>
-        <div style="font-size:.9rem;color:var(--c-text-muted);font-weight:500">довольных пациентов</div>
+      <div class="rating-stat-card">
+        <div class="rating-stat-card__num">1000+</div>
+        <div style="font-size:.9rem;color:var(--c-text-muted);font-weight:500" data-i18n="about_patients_stat">довольных пациентов</div>
       </div>
-      <div style="background:var(--c-bg-2);border-radius:var(--radius-xl);padding:2.5rem 2rem;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:.75rem">
-        <div style="font-size:1.1rem;font-weight:700;color:var(--c-dark)">Читать все отзывы</div>
+      <div class="rating-stat-card">
+        <div style="font-size:1.1rem;font-weight:700;color:var(--c-dark)" data-i18n="rev_read_all">Читать все отзывы</div>
         <a href="https://2gis.kz/almaty/branches/70000001065666704" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg> Открыть 2GIS
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg> <span data-i18n="rev_open_2gis">Открыть 2GIS</span>
         </a>
       </div>
     </div>
@@ -259,11 +259,10 @@
     </div>
 
     <!-- CTA to leave review -->
-    <div style="text-align:center;margin-top:4rem;padding:3rem 2rem;background:linear-gradient(135deg,rgba(30,111,192,.06),rgba(75,170,235,.06));border-radius:var(--radius-xl);border:1px solid rgba(30,111,192,.15)" class="reveal">
-      <div style="font-size:2.5rem;margin-bottom:1rem">🙏</div>
+    <div class="reviews-cta-box reveal">
       <h3 style="font-size:1.4rem;font-weight:800;color:var(--c-dark);margin-bottom:.75rem" data-i18n="rev_happy">Остались довольны лечением?</h3>
       <p style="color:var(--c-text-muted);margin-bottom:2rem;line-height:1.7" data-i18n="rev_help_others">Ваш отзыв поможет другим пациентам сделать правильный выбор.<br>Это займёт всего 2 минуты!</p>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <div class="reviews-cta-box__btns">
         <a href="https://2gis.kz/almaty/branches/70000001065666704" target="_blank" class="btn btn-primary btn-lg">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg> <span data-i18n="rev_leave_btn">Оставить отзыв на 2GIS</span>
         </a>

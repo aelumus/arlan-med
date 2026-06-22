@@ -160,7 +160,7 @@ function initModal() {
       const msg = `Здравствуйте! Хочу записаться на приём.
 👤 Имя: ${name}
 📞 Телефон: ${phone}
-🦷 Услуга: ${service}
+Услуга: ${service}
 📍 Филиал: ${branch}${comment ? '\n💬 ' + comment : ''}`;
 
       window.open(`${WA_BASE}?text=${encodeURIComponent(msg)}`, '_blank');
