@@ -4,7 +4,7 @@
    ============================================= */
 
 const WA_MSG = 'Здравствуйте! Хочу записаться на приём.';
-const INSTAGRAM = 'https://www.instagram.com/arlan.med';
+const INSTAGRAM = 'https://www.instagram.com/arlan_med/';
 const TIKTOK = 'https://www.tiktok.com/@arlanmed.dent';
 const GIS = 'https://2gis.kz/almaty/branches/70000001065666704';
 
