@@ -9,18 +9,29 @@ const TIKTOK = 'https://www.tiktok.com/@arlanmed.dent';
 const GIS = 'https://2gis.kz/almaty/branches/70000001065666704';
 
 // ===== HEADER SCROLL =====
-function initHeader() {
+function updateHeaderState() {
   const header = document.querySelector('.header');
   if (!header) return;
   const isHero = document.querySelector('.hero');
+  const scrolled = window.scrollY > 40;
 
-  function update() {
-    const scrolled = window.scrollY > 40;
-    header.classList.toggle('scrolled', scrolled);
-    if (isHero) header.classList.toggle('hero-mode', !scrolled);
+  header.classList.toggle('scrolled', scrolled);
+  if (isHero) {
+    header.classList.toggle('hero-mode', !scrolled);
+  } else {
+    header.classList.remove('hero-mode');
   }
-  update();
-  window.addEventListener('scroll', update, { passive: true });
+}
+
+function initHeader() {
+  updateHeaderState();
+  window.addEventListener('scroll', updateHeaderState, { passive: true });
+  window.addEventListener('load', () => {
+    updateHeaderState();
+    setTimeout(updateHeaderState, 50);
+    setTimeout(updateHeaderState, 300);
+  });
+  window.addEventListener('hashchange', () => requestAnimationFrame(updateHeaderState));
 }
 
 // ===== BURGER MENU =====
@@ -237,6 +248,7 @@ function initSmoothScroll() {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         setTimeout(revealVisibleElements, 400);
+        setTimeout(updateHeaderState, 400);
       }
     });
   });

@@ -118,6 +118,21 @@ input, textarea, select { font-family: inherit; }
   background: rgba(255,255,255,.96); backdrop-filter: blur(20px);
   box-shadow: var(--shadow-md); border-bottom: 1px solid rgba(229,231,235,.8);
 }
+/* Scrolled header — always dark readable text (overrides hero-mode) */
+.header.scrolled .header__logo img { filter: none; }
+.header.scrolled .nav-link { color: var(--c-dark); }
+.header.scrolled .nav-link:hover { color: var(--c-primary); background: transparent; }
+.header.scrolled .header__phone { color: var(--c-dark); }
+.header.scrolled .lang-sw { background: rgba(0,0,0,.06); }
+.header.scrolled .lang-btn { color: var(--c-text-muted); }
+.header.scrolled .lang-btn:hover:not(.active) { color: var(--c-primary); }
+.header.scrolled .burger-line { background: var(--c-dark); }
+/* Hero top — dark bar so white nav stays readable */
+.header.hero-mode:not(.scrolled) {
+  background: rgba(13, 17, 23, .78);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
 .header__inner { display: flex; align-items: center; gap: 1.5rem; width: 100%; }
 .header__logo { flex-shrink: 0; display: block; }
 .header__logo img { height: 42px; width: auto; object-fit: contain; transition: filter var(--transition); }
@@ -789,12 +804,6 @@ html.js .reveal-right.visible { opacity: 1; transform: none; }
   }
   .header.scrolled .burger-line { background: var(--c-dark); }
   .mobile-nav { display: block; }
-  /* Always readable header on mobile over hero */
-  .header.hero-mode {
-    background: rgba(13, 17, 23, .82);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255, 255, 255, .08);
-  }
   .mobile-nav {
     max-height: calc(100dvh - var(--header-h));
     overflow-y: auto;
