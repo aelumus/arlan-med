@@ -94,6 +94,7 @@ const translations = {
     impl_benefits_title: 'Преимущества',
     impl_price_from: 'от',
     impl_modal_cta: 'Записаться на консультацию',
+    impl_modal_title: 'Импланты',
     brand_megagen_note: 'Южная Корея · от 200 000 ₸',
     brand_osstem_note: 'Южная Корея · от 150 000 ₸',
     brand_dio_note: 'Южная Корея · от 110 000 ₸',
@@ -428,6 +429,7 @@ const translations = {
     impl_benefits_title: 'Артықшылықтары',
     impl_price_from: 'бастап',
     impl_modal_cta: 'Консультацияға жазылу',
+    impl_modal_title: 'Импланттар',
     branch_badge: 'Мекенжайлар',
     branch_title: 'Біз сізге жақынбыз',
     branch_sub: 'Алматының түрлі аудандарындағы 4 клиника — өзіңізге ең жақынын таңдаңыз',
@@ -733,6 +735,7 @@ const translations = {
     impl_benefits_title: 'Benefits',
     impl_price_from: 'from',
     impl_modal_cta: 'Book a consultation',
+    impl_modal_title: 'Implants',
     branch_badge: 'Locations',
     branch_title: 'We are always nearby',
     branch_sub: '4 clinics in different districts of Almaty — easily choose the one closest to you',
@@ -955,7 +958,9 @@ const translations = {
   }
 };
 
-let currentLang = localStorage.getItem('arlan_lang') || 'ru';
+const SUPPORTED_LANGS = ['ru', 'kz', 'en'];
+let storedLang = localStorage.getItem('arlan_lang') || 'ru';
+let currentLang = SUPPORTED_LANGS.includes(storedLang) ? storedLang : 'ru';
 
 function t(key) {
   if (translations[currentLang]?.[key]) return translations[currentLang][key];
@@ -966,6 +971,7 @@ function t(key) {
 }
 
 function setLang(lang) {
+  if (!SUPPORTED_LANGS.includes(lang)) return;
   currentLang = lang;
   localStorage.setItem('arlan_lang', lang);
   applyTranslations();
@@ -974,6 +980,7 @@ function setLang(lang) {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
   if (typeof refreshBranchContacts === 'function') refreshBranchContacts();
+  if (typeof refreshImplantModal === 'function') refreshImplantModal();
 }
 
 function applyTranslations() {
@@ -1008,10 +1015,24 @@ function initLang() {
   document.documentElement.lang = currentLang;
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === currentLang);
-    btn.addEventListener('click', () => setLang(btn.dataset.lang));
   });
 }
 
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.lang-btn');
+  if (!btn?.dataset.lang) return;
+  e.preventDefault();
+  setLang(btn.dataset.lang);
+});
+
 window.t = t;
 window.setLang = setLang;
+window.applyTranslations = applyTranslations;
 window.initLang = initLang;
+window.getCurrentLang = () => currentLang;
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initLang);
+} else {
+  initLang();
+}

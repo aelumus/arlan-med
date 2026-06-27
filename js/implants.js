@@ -100,12 +100,24 @@ function formatPrice(n) {
   return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
+let activeImplantId = null;
+
+function getImplantText(id) {
+  const entry = IMPLANT_TEXT[id];
+  if (!entry) return null;
+  const lang = typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'ru';
+  if (entry[lang]?.intro) return entry[lang];
+  if (entry.intro) return entry;
+  return null;
+}
+
 function openImplantModal(id) {
   const implant = IMPLANTS.find(b => b.id === id);
   const overlay = document.getElementById('implant-overlay');
   if (!implant || !overlay) return;
 
-  const text = IMPLANT_TEXT[id];
+  activeImplantId = id;
+  const text = getImplantText(id);
   const img = overlay.querySelector('#implant-modal-img');
   const meta = overlay.querySelector('#implant-modal-meta');
   const title = overlay.querySelector('#implant-modal-title');
@@ -120,7 +132,10 @@ function openImplantModal(id) {
     img.alt = implant.name;
   }
   if (meta) meta.textContent = implantNoteText(implant);
-  if (title) title.textContent = `Импланты ${implant.name}`;
+  if (title) {
+    const prefix = typeof t === 'function' ? t('impl_modal_title') : 'Импланты';
+    title.textContent = `${prefix} ${implant.name}`;
+  }
   if (intro) intro.textContent = text?.intro || '';
   if (list) {
     list.innerHTML = (text?.benefits || []).map(b => `<li>${b}</li>`).join('');
@@ -143,6 +158,11 @@ function closeImplantModal() {
   overlay.classList.remove('open');
   overlay.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+  activeImplantId = null;
+}
+
+function refreshImplantModal() {
+  if (activeImplantId) openImplantModal(activeImplantId);
 }
 
 function initImplants() {
@@ -179,4 +199,5 @@ function initImplants() {
 document.addEventListener('DOMContentLoaded', initImplants);
 window.openImplantModal = openImplantModal;
 window.closeImplantModal = closeImplantModal;
+window.refreshImplantModal = refreshImplantModal;
 window.IMPLANTS = IMPLANTS;
