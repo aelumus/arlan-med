@@ -53,9 +53,30 @@ function initBurger() {
 }
 
 // ===== SCROLL REVEAL =====
+function revealVisibleElements() {
+  if (location.hash) {
+    const target = document.querySelector(location.hash);
+    target?.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+      el.classList.add('visible');
+    });
+  }
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    if (el.classList.contains('visible')) return;
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 80 && rect.bottom > -80) {
+      el.classList.add('visible');
+    }
+  });
+}
+
 function initReveal() {
   const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
   if (!els.length) return;
+
+  revealVisibleElements();
+  document.documentElement.classList.add('js');
+  revealVisibleElements();
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -64,9 +85,30 @@ function initReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
-  els.forEach(el => observer.observe(el));
+  els.forEach(el => {
+    if (!el.classList.contains('visible')) observer.observe(el);
+  });
+
+  const refresh = () => requestAnimationFrame(revealVisibleElements);
+  let scrollTick = false;
+  window.addEventListener('scroll', () => {
+    if (scrollTick) return;
+    scrollTick = true;
+    requestAnimationFrame(() => {
+      revealVisibleElements();
+      scrollTick = false;
+    });
+  }, { passive: true });
+  window.addEventListener('load', () => {
+    refresh();
+    setTimeout(revealVisibleElements, 50);
+    setTimeout(revealVisibleElements, 300);
+  }, { once: true });
+  window.addEventListener('hashchange', refresh);
+  setTimeout(revealVisibleElements, 100);
+  setTimeout(revealVisibleElements, 600);
 }
 
 // ===== COUNTER ANIMATION =====
@@ -194,6 +236,7 @@ function initSmoothScroll() {
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(revealVisibleElements, 400);
       }
     });
   });
