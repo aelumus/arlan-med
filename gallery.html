@@ -89,6 +89,10 @@
 
     @media(max-width:900px){ .gallery-grid { grid-template-columns: repeat(2,1fr); } }
     @media(max-width:550px){ .gallery-grid { grid-template-columns: 1fr; } }
+    @media(max-width:600px){
+      .gallery-filter { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start !important; padding-bottom: .5rem; -webkit-overflow-scrolling: touch; }
+      .gallery-filter .filter-btn { flex-shrink: 0; }
+    }
   </style>
 </head>
 <body>
@@ -154,13 +158,88 @@
     <!-- Filter -->
     <div class="filter-bar gallery-filter" style="justify-content:center;margin-bottom:3rem">
       <button class="filter-btn active" data-filter="all" data-i18n="gal_filter_all">Все работы</button>
+      <button class="filter-btn" data-filter="veneers" data-i18n="gal_filter_veneers">Виниры</button>
       <button class="filter-btn" data-filter="implants" data-i18n="gal_filter_implants">Имплантация</button>
+      <button class="filter-btn" data-filter="allon6" data-i18n="gal_filter_allon6">All-on-6</button>
+      <button class="filter-btn" data-filter="orthodontics" data-i18n="gal_filter_ortho">Ортодонтия</button>
       <button class="filter-btn" data-filter="therapy" data-i18n="gal_filter_ther">Лечение зубов</button>
       <button class="filter-btn" data-filter="complex" data-i18n="gal_filter_complex">Комплексное</button>
     </div>
 
     <!-- Gallery grid -->
     <div class="gallery-grid" id="galleryGrid">
+
+      <div class="gallery-card reveal" data-cat="veneers">
+        <img class="gallery-card__img" src="img/виниры/IMG_5773.PNG"
+             alt="Результат установки виниров" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_veneers_result">Установка виниров</span>
+          <span class="gallery-card__cat" data-i18n="gal_veneers">Виниры</span>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-cat="veneers">
+        <img class="gallery-card__img" src="img/виниры/IMG_1818 (1).PNG"
+             alt="Виниры — результат лечения" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_veneers_result">Установка виниров</span>
+          <span class="gallery-card__cat" data-i18n="gal_veneers">Виниры</span>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-cat="veneers">
+        <img class="gallery-card__img" src="img/виниры/IMG_1819 (1).PNG"
+             alt="Виниры — до и после" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_veneers_result">Установка виниров</span>
+          <span class="gallery-card__cat" data-i18n="gal_veneers">Виниры</span>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-cat="veneers">
+        <img class="gallery-card__img" src="img/виниры/IMG_1820 (1).PNG"
+             alt="Виниры — готовый результат" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_veneers_result">Установка виниров</span>
+          <span class="gallery-card__cat" data-i18n="gal_veneers">Виниры</span>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-cat="allon6">
+        <img class="gallery-card__img" src="img/All on 6/IMG_8305.PNG"
+             alt="All-on-6 — полное восстановление зубов" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_allon6_result">All-on-6 — полное восстановление</span>
+          <span class="gallery-card__cat" data-i18n="gal_allon6">All-on-6</span>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-cat="implants">
+        <img class="gallery-card__img" src="img/Имплантация и цирконьевые коронки/IMG_1543.PNG"
+             alt="Имплантация и циркониевые коронки" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_impl_zircon">Имплантация и циркониевые коронки</span>
+          <span class="gallery-card__cat" data-i18n="gal_implants">Импланты</span>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-cat="orthodontics">
+        <img class="gallery-card__img" src="img/ордонтия/IMG_1811.PNG"
+             alt="Ортодонтическое лечение — результат" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_ortho_result">Исправление прикуса</span>
+          <span class="gallery-card__cat" data-i18n="gal_ortho">Ортодонтия</span>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal" data-cat="orthodontics">
+        <img class="gallery-card__img" src="img/ордонтия/IMG_2496.PNG"
+             alt="Ортодонтия — до и после" loading="lazy">
+        <div class="gallery-card__label">
+          <span data-i18n="gal_ortho_result">Исправление прикуса</span>
+          <span class="gallery-card__cat" data-i18n="gal_ortho">Ортодонтия</span>
+        </div>
+      </div>
 
       <div class="gallery-card reveal" data-cat="complex">
         <img class="gallery-card__img" src="img/до после/до после 1.PNG"

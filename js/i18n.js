@@ -203,6 +203,9 @@ const translations = {
     // GALLERY PAGE INNER
     gal_filter_all: 'Все работы',
     gal_filter_implants: 'Имплантация',
+    gal_filter_veneers: 'Виниры',
+    gal_filter_ortho: 'Ортодонтия',
+    gal_filter_allon6: 'All-on-6',
     gal_filter_ther: 'Лечение зубов',
     gal_filter_complex: 'Комплексное',
     gal_complex_restor: 'Комплексное восстановление',
@@ -214,6 +217,13 @@ const translations = {
     gal_implants: 'Импланты',
     gal_impl_final: 'Финальный результат имплантации',
     gal_impl_result: 'Имплантация — результат',
+    gal_veneers: 'Виниры',
+    gal_veneers_result: 'Установка виниров',
+    gal_ortho: 'Ортодонтия',
+    gal_ortho_result: 'Исправление прикуса',
+    gal_allon6: 'All-on-6',
+    gal_allon6_result: 'All-on-6 — полное восстановление',
+    gal_impl_zircon: 'Имплантация и циркониевые коронки',
     gal_insta_more: 'Больше работ смотрите в нашем Instagram',
     
     // REVIEWS PAGE
@@ -516,6 +526,9 @@ const translations = {
     // GALLERY PAGE INNER
     gal_filter_all: 'Барлық жұмыстар',
     gal_filter_implants: 'Имплантация',
+    gal_filter_veneers: 'Винирлер',
+    gal_filter_ortho: 'Ортодонтия',
+    gal_filter_allon6: 'All-on-6',
     gal_filter_ther: 'Тіс емдеу',
     gal_filter_complex: 'Кешенді',
     gal_complex_restor: 'Кешенді қалпына келтіру',
@@ -527,6 +540,13 @@ const translations = {
     gal_implants: 'Импланттар',
     gal_impl_final: 'Имплантацияның соңғы нәтижесі',
     gal_impl_result: 'Имплантация — нәтиже',
+    gal_veneers: 'Винирлер',
+    gal_veneers_result: 'Винир орнату',
+    gal_ortho: 'Ортодонтия',
+    gal_ortho_result: 'Тістің дұрыс орналасуын түзету',
+    gal_allon6: 'All-on-6',
+    gal_allon6_result: 'All-on-6 — толық қалпына келтіру',
+    gal_impl_zircon: 'Имплантация және цирконий тәж',
     gal_insta_more: 'Қосымша жұмыстарды біздің Instagram-да көріңіз',
     
     // REVIEWS PAGE
@@ -800,6 +820,9 @@ const translations = {
     // GALLERY PAGE INNER
     gal_filter_all: 'All Works',
     gal_filter_implants: 'Implants',
+    gal_filter_veneers: 'Veneers',
+    gal_filter_ortho: 'Orthodontics',
+    gal_filter_allon6: 'All-on-6',
     gal_filter_ther: 'Treatments',
     gal_filter_complex: 'Complex',
     gal_complex_restor: 'Complex Restoration',
@@ -811,6 +834,13 @@ const translations = {
     gal_implants: 'Implants',
     gal_impl_final: 'Implantation Final Result',
     gal_impl_result: 'Implantation — Result',
+    gal_veneers: 'Veneers',
+    gal_veneers_result: 'Veneer Installation',
+    gal_ortho: 'Orthodontics',
+    gal_ortho_result: 'Bite Correction',
+    gal_allon6: 'All-on-6',
+    gal_allon6_result: 'All-on-6 — Full Restoration',
+    gal_impl_zircon: 'Implants and Zirconia Crowns',
     gal_insta_more: 'See more of our work on Instagram',
     
     // REVIEWS PAGE
