@@ -419,12 +419,61 @@ input, textarea, select { font-family: inherit; }
 .install-card__ex { margin-top: .75rem; padding: .6rem 1rem; background: rgba(30,111,192,.25); border-radius: var(--radius-sm); font-size: .8rem; color: #4BAAEB; font-weight: 500; }
 
 /* ===== BRANDS ===== */
-.brands-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; }
-.brand-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: var(--radius-xl); padding: 2rem 1.5rem; text-align: center; transition: all var(--transition); }
-.brand-card:hover { border-color: var(--c-primary); box-shadow: 0 0 0 3px rgba(30,111,192,.1); transform: translateY(-3px); }
+.brands-hint {
+  font-size: .9rem; color: var(--c-primary); font-weight: 600;
+  margin: -.5rem auto 1.75rem; max-width: 520px; text-align: center;
+  padding: .65rem 1rem; background: rgba(30,111,192,.08); border-radius: var(--radius-full);
+}
+.brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.25rem; }
+button.brand-card {
+  font: inherit; color: inherit; cursor: pointer; width: 100%; text-align: center;
+  appearance: none; -webkit-appearance: none;
+}
+.brand-card { background: var(--c-white); border: 1px solid var(--c-border); border-radius: var(--radius-xl); padding: 2rem 1.25rem 1.35rem; transition: all var(--transition); position: relative; }
+.brand-card:hover, .brand-card:focus-visible {
+  border-color: var(--c-primary); box-shadow: 0 0 0 3px rgba(30,111,192,.12), var(--shadow-md);
+  transform: translateY(-4px); outline: none;
+}
 .brand-card__flag { font-size: 2.2rem; margin-bottom: .75rem; }
-.brand-card__name { font-size: 1.3rem; font-weight: 900; color: var(--c-dark); margin-bottom: .35rem; }
-.brand-card__note { font-size: .75rem; color: var(--c-text-muted); font-weight: 500; }
+.brand-card__name { font-size: 1.2rem; font-weight: 900; color: var(--c-dark); margin-bottom: .35rem; }
+.brand-card__note { font-size: .72rem; color: var(--c-text-muted); font-weight: 500; line-height: 1.45; margin-bottom: .85rem; }
+.brand-card__more {
+  font-size: .72rem; font-weight: 700; color: var(--c-primary);
+  text-transform: uppercase; letter-spacing: .04em;
+}
+
+/* Implant detail modal */
+.implant-modal {
+  background: var(--c-white); border-radius: var(--radius-xl); width: 100%; max-width: 920px;
+  max-height: min(92vh, 900px); overflow: auto; position: relative;
+  box-shadow: var(--shadow-xl); transform: translateY(12px); transition: transform var(--transition);
+}
+.implant-overlay.open .implant-modal { transform: none; }
+.implant-modal__close {
+  position: absolute; top: 1rem; right: 1rem; z-index: 2;
+  width: 36px; height: 36px; border-radius: 50%; background: var(--c-bg-2);
+  border: none; cursor: pointer; font-size: 18px; color: var(--c-text-muted);
+}
+.implant-modal__close:hover { background: #fee2e2; color: #ef4444; }
+.implant-modal__grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 0; }
+.implant-modal__media { background: var(--c-bg-2); min-height: 280px; }
+.implant-modal__media img { width: 100%; height: 100%; object-fit: cover; min-height: 280px; }
+.implant-modal__body { padding: 2rem 2rem 2.25rem; overflow-y: auto; }
+.implant-modal__meta { font-size: .78rem; font-weight: 600; color: var(--c-primary); margin-bottom: .35rem; }
+.implant-modal__title { font-size: 1.45rem; font-weight: 900; color: var(--c-dark); margin-bottom: .85rem; line-height: 1.2; }
+.implant-modal__intro, .implant-modal__outro { font-size: .88rem; color: var(--c-text-muted); line-height: 1.7; margin-bottom: 1rem; }
+.implant-modal__benefits-title { font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--c-dark); margin-bottom: .65rem; }
+.implant-modal__benefits { margin: 0 0 1rem 1.1rem; padding: 0; }
+.implant-modal__benefits li { font-size: .84rem; color: var(--c-text); line-height: 1.55; margin-bottom: .4rem; }
+.implant-modal__price {
+  font-size: 1.15rem; font-weight: 900; color: var(--c-primary);
+  margin-bottom: 1.25rem; padding: .75rem 1rem; background: rgba(30,111,192,.08); border-radius: var(--radius-md);
+}
+@media (max-width: 768px) {
+  .implant-modal__grid { grid-template-columns: 1fr; }
+  .implant-modal__media img { min-height: 220px; max-height: 260px; }
+  .implant-modal__body { padding: 1.5rem; }
+}
 
 /* ===== BRANCHES ===== */
 .branches-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; }

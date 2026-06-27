@@ -175,7 +175,7 @@
       <a href="services.html#implants" class="svc-card reveal">
         <div class="svc-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5.5" r="2.5"/><path d="M12 8v2M9.5 10h5M10.5 10v8M13.5 10v8M10 18h4"/></svg></div>
         <div class="svc-card__title" data-i18n="svc_impl_title">Имплантация</div>
-        <div class="svc-card__desc" data-i18n="svc_impl_desc">MegaGen, Osstem, Dio, Straumann — 4 ведущих бренда под любой бюджет</div>
+        <div class="svc-card__desc" data-i18n="svc_impl_desc">MegaGen, Osstem, DIO, Straumann, Magicore, Dentium, Neodent — 7 брендов под любой бюджет</div>
         <div class="svc-card__more" data-i18n="svc_more">Подробнее</div>
       </a>
       <a href="services.html#veneers" class="svc-card reveal">
@@ -315,34 +315,57 @@
 </section>
 
 <!-- ===== BRANDS ===== -->
-<section class="section section--gray">
+<section class="section section--gray" id="brands">
   <div class="container">
     <div class="s-header reveal">
       <div class="s-badge" data-i18n="brands_badge">Наши импланты</div>
       <h2 class="s-title" data-i18n-html="brands_title_html">Лучшие мировые <span class="hl">бренды</span></h2>
-      <p class="s-subtitle" data-i18n="brands_sub">Выбор из 4 ведущих производителей под разный бюджет</p>
+      <p class="s-subtitle" data-i18n="brands_sub">Выбор из 7 ведущих производителей под разный бюджет</p>
+      <p class="brands-hint reveal" data-i18n="brands_hint">Нажмите на карточку — откроется фото и подробное описание</p>
     </div>
-    <div class="brands-grid stagger">
-      <div class="brand-card reveal">
+    <div class="brands-grid stagger" id="brands-grid">
+      <button type="button" class="brand-card reveal" data-implant="megagen">
         <div class="brand-card__flag">🇰🇷</div>
         <div class="brand-card__name">MegaGen</div>
-        <div class="brand-card__note" data-i18n="brand_megagen_note">Южная Корея · от 200 000 тг</div>
-      </div>
-      <div class="brand-card reveal">
+        <div class="brand-card__note" data-i18n="brand_megagen_note">Южная Корея · от 200 000 ₸</div>
+        <div class="brand-card__more" data-i18n="brand_more">Подробнее →</div>
+      </button>
+      <button type="button" class="brand-card reveal" data-implant="osstem">
         <div class="brand-card__flag">🇰🇷</div>
         <div class="brand-card__name">Osstem</div>
-        <div class="brand-card__note" data-i18n="brand_osstem_note">Южная Корея · от 150 000 тг</div>
-      </div>
-      <div class="brand-card reveal">
+        <div class="brand-card__note" data-i18n="brand_osstem_note">Южная Корея · от 150 000 ₸</div>
+        <div class="brand-card__more" data-i18n="brand_more">Подробнее →</div>
+      </button>
+      <button type="button" class="brand-card reveal" data-implant="dio">
         <div class="brand-card__flag">🇰🇷</div>
-        <div class="brand-card__name">Dio</div>
-        <div class="brand-card__note" data-i18n="brand_dio_note">Южная Корея · от 70 000 тг</div>
-      </div>
-      <div class="brand-card reveal">
+        <div class="brand-card__name">DIO</div>
+        <div class="brand-card__note" data-i18n="brand_dio_note">Южная Корея · от 110 000 ₸</div>
+        <div class="brand-card__more" data-i18n="brand_more">Подробнее →</div>
+      </button>
+      <button type="button" class="brand-card reveal" data-implant="straumann">
         <div class="brand-card__flag">🇨🇭</div>
         <div class="brand-card__name">Straumann</div>
-        <div class="brand-card__note" data-i18n="brand_straumann_note">Швейцария · от 350 000 тг</div>
-      </div>
+        <div class="brand-card__note" data-i18n="brand_straumann_note">Швейцария · от 350 000 ₸</div>
+        <div class="brand-card__more" data-i18n="brand_more">Подробнее →</div>
+      </button>
+      <button type="button" class="brand-card reveal" data-implant="magicore">
+        <div class="brand-card__flag">🇰🇷</div>
+        <div class="brand-card__name">Magicore</div>
+        <div class="brand-card__note" data-i18n="brand_magicore_note">Южная Корея · от 250 000 ₸</div>
+        <div class="brand-card__more" data-i18n="brand_more">Подробнее →</div>
+      </button>
+      <button type="button" class="brand-card reveal" data-implant="dentium">
+        <div class="brand-card__flag">🇰🇷</div>
+        <div class="brand-card__name">Dentium</div>
+        <div class="brand-card__note" data-i18n="brand_dentium_note">Южная Корея · от 180 000 ₸</div>
+        <div class="brand-card__more" data-i18n="brand_more">Подробнее →</div>
+      </button>
+      <button type="button" class="brand-card reveal" data-implant="neodent">
+        <div class="brand-card__flag">🇧🇷</div>
+        <div class="brand-card__name">Neodent</div>
+        <div class="brand-card__note" data-i18n="brand_neodent_note">Бразилия · от 300 000 ₸</div>
+        <div class="brand-card__more" data-i18n="brand_more">Подробнее →</div>
+      </button>
     </div>
   </div>
 </section>
@@ -616,8 +639,31 @@
   </div>
 </div>
 
+<!-- Implant detail modal -->
+<div class="overlay implant-overlay" id="implant-overlay" aria-hidden="true">
+  <div class="implant-modal" role="dialog" aria-modal="true" aria-labelledby="implant-modal-title">
+    <button type="button" class="implant-modal__close" aria-label="Закрыть">✕</button>
+    <div class="implant-modal__grid">
+      <div class="implant-modal__media">
+        <img id="implant-modal-img" src="" alt="">
+      </div>
+      <div class="implant-modal__body">
+        <div class="implant-modal__meta" id="implant-modal-meta"></div>
+        <h3 class="implant-modal__title" id="implant-modal-title"></h3>
+        <p class="implant-modal__intro" id="implant-modal-intro"></p>
+        <h4 class="implant-modal__benefits-title" data-i18n="impl_benefits_title">Преимущества</h4>
+        <ul class="implant-modal__benefits" id="implant-modal-benefits"></ul>
+        <p class="implant-modal__outro" id="implant-modal-outro"></p>
+        <div class="implant-modal__price" id="implant-modal-price"></div>
+        <button type="button" class="btn btn-primary btn-lg" data-implant-cta data-i18n="impl_modal_cta">Записаться на консультацию</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="js/i18n.js"></script>
 <script src="js/branches.js"></script>
 <script src="js/main.js"></script>
+<script src="js/implants.js"></script>
 </body>
 </html>
