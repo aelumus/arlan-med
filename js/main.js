@@ -3,10 +3,7 @@
    Arlan Med Dental Clinic
    ============================================= */
 
-const WA_NUM = '77011880101';
-const WA_BASE = `https://wa.me/${WA_NUM}`;
-const PHONE = '+7 701 188 0101';
-const TEL = 'tel:+77011880101';
+const WA_MSG = 'Здравствуйте! Хочу записаться на приём.';
 const INSTAGRAM = 'https://www.instagram.com/arlan.med';
 const TIKTOK = 'https://www.tiktok.com/@arlanmed.dent';
 const GIS = 'https://2gis.kz/almaty/branches/70000001065666704';
@@ -154,16 +151,23 @@ function initModal() {
       const name = form.querySelector('#modal-name')?.value || '';
       const phone = form.querySelector('#modal-phone')?.value || '';
       const service = form.querySelector('#modal-service')?.value || '';
-      const branch = form.querySelector('#modal-branch')?.value || '';
+      const branchVal = form.querySelector('#modal-branch')?.value || '';
       const comment = form.querySelector('#modal-comment')?.value || '';
+      const branchObj = typeof getBranchByModalValue === 'function'
+        ? getBranchByModalValue(branchVal)
+        : (window.BRANCHES && window.BRANCHES[0]);
+      const branchPhone = branchObj?.phone || '77770437309';
 
       const msg = `Здравствуйте! Хочу записаться на приём.
 👤 Имя: ${name}
 📞 Телефон: ${phone}
 Услуга: ${service}
-📍 Филиал: ${branch}${comment ? '\n💬 ' + comment : ''}`;
+📍 Филиал: ${branchVal}${comment ? '\n💬 ' + comment : ''}`;
 
-      window.open(`${WA_BASE}?text=${encodeURIComponent(msg)}`, '_blank');
+      const url = typeof waUrl === 'function'
+        ? waUrl(branchPhone, msg)
+        : `https://wa.me/${branchPhone}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
       closeModal();
     });
   }
