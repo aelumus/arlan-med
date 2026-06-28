@@ -8,7 +8,7 @@ const IMPLANTS = [
   { id: 'dio',       name: 'DIO',       flag: '🇰🇷', noteKey: 'brand_dio_note',       image: 'img/implants/dio.jpeg',       price: 110000 },
   { id: 'straumann', name: 'Straumann', flag: '🇨🇭', noteKey: 'brand_straumann_note', image: 'img/implants/straumann.webp', price: 350000 },
   { id: 'magicore',  name: 'Magicore',  flag: '🇰🇷', noteKey: 'brand_magicore_note',  image: 'img/implants/magicore.jpeg',  price: 250000 },
-  { id: 'dentium',   name: 'Dentium',   flag: '🇰🇷', noteKey: 'brand_dentium_note',   image: 'img/implants/dentium.jpeg',   price: 180000 },
+  { id: 'dentium',   name: 'Dentium',   flag: '🇰🇷', noteKey: 'brand_dentium_note',   image: 'img/implants/dentium.jpeg',   price: 160000 },
   { id: 'neodent',   name: 'Neodent',   flag: '🇧🇷', noteKey: 'brand_neodent_note',   image: 'img/implants/neodent.jpeg',   price: 300000 },
 ];
 
