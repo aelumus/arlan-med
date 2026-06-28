@@ -726,21 +726,25 @@ html.js .reveal-right.visible { opacity: 1; transform: none; }
 .about-team-photo img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 72%;
+  height: auto;
+  object-fit: contain;
+  object-position: center center;
 }
 .about-team-photo--hero {
   box-shadow: 0 20px 60px rgba(0,0,0,.15);
-  aspect-ratio: 4 / 3;
 }
-.about-team-photo--hero img { object-position: center 65%; }
+.about-team-photo--hero img {
+  max-height: 440px;
+  margin: 0 auto;
+}
 .about-team-photo--wide {
-  margin-bottom: 2rem;
-  aspect-ratio: 5 / 3;
-  max-height: 540px;
+  margin: 0 auto 2rem;
+  max-width: 720px;
 }
-.about-team-photo--wide img { object-position: center bottom; }
+.about-team-photo--wide img {
+  max-height: 640px;
+  margin: 0 auto;
+}
 
 /* ===== SERVICES PAGE ===== */
 .service-section { padding: 3.5rem 0; border-bottom: 1px solid var(--c-border); }
