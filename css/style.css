@@ -282,8 +282,11 @@ input, textarea, select { font-family: inherit; }
   color: var(--c-dark); border-color: var(--c-border); border-radius: 12px; margin-bottom: .45rem;
   background: var(--c-white); border: 1px solid var(--c-border);
 }
+.branch-contacts-card .branch-contact-row__name { color: var(--c-dark); }
+.branch-contacts-card .branch-contact-row__phone { color: var(--c-text-muted); }
 .branch-contacts-card .branch-contact-row:last-child { margin-bottom: 0; }
 .branch-contacts-card .branch-contact-row:hover { background: rgba(30,111,192,.06); border-color: rgba(30,111,192,.25); }
+.branch-contacts-card--wa .branch-contact-row:hover { background: rgba(37,211,102,.06); border-color: rgba(18,140,126,.25); }
 .branch-contacts-card--wa .branch-contacts-card__title { color: #128C7E; }
 
 .map-card__contacts { display: flex; flex-direction: column; gap: .45rem; margin: .5rem 0 1rem; }
