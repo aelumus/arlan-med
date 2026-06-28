@@ -717,6 +717,30 @@ html.js .reveal-right.visible { opacity: 1; transform: none; }
 .licence-badge__icon { font-size: 1.8rem; }
 .licence-badge__title { font-size: .8rem; color: var(--c-text-muted); margin-bottom: .2rem; }
 .licence-badge__num { font-size: .95rem; font-weight: 700; color: var(--c-primary); }
+.about-team-photo {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  background: var(--c-bg-2);
+}
+.about-team-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 72%;
+}
+.about-team-photo--hero {
+  box-shadow: 0 20px 60px rgba(0,0,0,.15);
+  aspect-ratio: 4 / 3;
+}
+.about-team-photo--hero img { object-position: center 65%; }
+.about-team-photo--wide {
+  margin-bottom: 2rem;
+  aspect-ratio: 5 / 3;
+  max-height: 540px;
+}
+.about-team-photo--wide img { object-position: center bottom; }
 
 /* ===== SERVICES PAGE ===== */
 .service-section { padding: 3.5rem 0; border-bottom: 1px solid var(--c-border); }
