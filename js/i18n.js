@@ -1011,17 +1011,19 @@ function applyTranslations() {
 }
 
 function initLang() {
-  applyTranslations();
-  document.documentElement.lang = currentLang;
   document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.type = 'button';
     btn.classList.toggle('active', btn.dataset.lang === currentLang);
   });
+  applyTranslations();
+  document.documentElement.lang = currentLang;
 }
 
 document.addEventListener('click', e => {
   const btn = e.target.closest('.lang-btn');
   if (!btn?.dataset.lang) return;
   e.preventDefault();
+  e.stopPropagation();
   setLang(btn.dataset.lang);
 });
 

@@ -157,8 +157,8 @@ function initCounters() {
 
 // ===== MODAL =====
 function initModal() {
-  const overlay = document.querySelector('.overlay');
-  const modal = document.querySelector('.modal');
+  const overlay = document.getElementById('overlay');
+  const modal = overlay?.querySelector('.modal');
   if (!overlay || !modal) return;
 
   function openModal(doctorName = '', service = '') {
