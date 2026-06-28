@@ -1,9 +1,17 @@
 # -*- coding: utf-8 -*-
 """Build js/price.js and js/price-i18n.js from authoritative price list."""
+import importlib.util
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+TRANSLATIONS_PATH = Path(__file__).with_name('price-translations-data.py')
+TRANSLATIONS_SPEC = importlib.util.spec_from_file_location('price_translations_data', TRANSLATIONS_PATH)
+if TRANSLATIONS_SPEC is None or TRANSLATIONS_SPEC.loader is None:
+    raise ImportError(f'Unable to import PRICE_TRANSLATIONS from {TRANSLATIONS_PATH}')
+PRICE_TRANSLATIONS_MODULE = importlib.util.module_from_spec(TRANSLATIONS_SPEC)
+TRANSLATIONS_SPEC.loader.exec_module(PRICE_TRANSLATIONS_MODULE)
+PRICE_TRANSLATIONS = PRICE_TRANSLATIONS_MODULE.PRICE_TRANSLATIONS
 
 PRICE_DATA = {
     'therapy': {
@@ -288,6 +296,20 @@ def generate_price_js(data):
 
 
 def generate_price_i18n(data):
+    for lang in ('kz', 'en'):
+        if lang not in PRICE_TRANSLATIONS:
+            raise KeyError(f'Missing language translations: {lang}')
+        for cat_key, cat in data.items():
+            if cat_key not in PRICE_TRANSLATIONS[lang]:
+                raise KeyError(f'Missing {lang} translations for category: {cat_key}')
+            source_count = len(cat['items'])
+            translated_count = len(PRICE_TRANSLATIONS[lang][cat_key])
+            if translated_count != source_count:
+                raise ValueError(
+                    f'Translation count mismatch for {lang}/{cat_key}: '
+                    f'{translated_count} != {source_count}'
+                )
+
     total = sum(len(v['items']) for v in data.values())
     lines = [
         '/* =============================================',
@@ -302,7 +324,11 @@ def generate_price_i18n(data):
         lines.append(f'  {lang}: {{')
         for cat_key, cat in data.items():
             for i, (name, _price) in enumerate(cat['items']):
-                lines.append(f'    pr_{cat_key}_{i}: {js_string(name)},')
+                if lang == 'ru':
+                    translated_name = name
+                else:
+                    translated_name = PRICE_TRANSLATIONS[lang][cat_key][i]
+                lines.append(f'    pr_{cat_key}_{i}: {js_string(translated_name)},')
         lines.append('  },')
     lines.append('};')
     lines.append('')
