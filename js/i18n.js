@@ -95,13 +95,13 @@ const translations = {
     impl_price_from: 'от',
     impl_modal_cta: 'Записаться на консультацию',
     impl_modal_title: 'Импланты',
-    brand_megagen_note: 'Южная Корея · от 200 000 ₸',
-    brand_osstem_note: 'Южная Корея · от 150 000 ₸',
-    brand_dio_note: 'Южная Корея · от 110 000 ₸',
-    brand_straumann_note: 'Швейцария · от 350 000 ₸',
-    brand_magicore_note: 'Южная Корея · от 250 000 ₸',
-    brand_dentium_note: 'Южная Корея · от 160 000 ₸',
-    brand_neodent_note: 'Бразилия · от 300 000 ₸',
+    brand_megagen_country: 'Южная Корея',
+    brand_osstem_country: 'Южная Корея',
+    brand_dio_country: 'Южная Корея',
+    brand_straumann_country: 'Швейцария',
+    brand_magicore_country: 'Южная Корея',
+    brand_dentium_country: 'Южная Корея',
+    brand_neodent_country: 'Бразилия',
 
     // BRANCHES
     branch_badge: 'Адреса',
@@ -346,13 +346,13 @@ const translations = {
   },
 
   kz: {
-    brand_megagen_note: 'Оңтүстік Корея · 200 000 ₸-дан',
-    brand_osstem_note: 'Оңтүстік Корея · 150 000 ₸-дан',
-    brand_dio_note: 'Оңтүстік Корея · 110 000 ₸-дан',
-    brand_straumann_note: 'Швейцария · 350 000 ₸-дан',
-    brand_magicore_note: 'Оңтүстік Корея · 250 000 ₸-дан',
-    brand_dentium_note: 'Оңтүстік Корея · 160 000 ₸-дан',
-    brand_neodent_note: 'Бразилия · 300 000 ₸-дан',
+    brand_megagen_country: 'Оңтүстік Корея',
+    brand_osstem_country: 'Оңтүстік Корея',
+    brand_dio_country: 'Оңтүстік Корея',
+    brand_straumann_country: 'Швейцария',
+    brand_magicore_country: 'Оңтүстік Корея',
+    brand_dentium_country: 'Оңтүстік Корея',
+    brand_neodent_country: 'Бразилия',
     nav_home: 'Басты бет',
     nav_about: 'Клиника туралы',
     nav_services: 'Қызметтер',
@@ -652,13 +652,13 @@ const translations = {
   },
 
   en: {
-    brand_megagen_note: 'South Korea · from 200,000 ₸',
-    brand_osstem_note: 'South Korea · from 150,000 ₸',
-    brand_dio_note: 'South Korea · from 110,000 ₸',
-    brand_straumann_note: 'Switzerland · from 350,000 ₸',
-    brand_magicore_note: 'South Korea · from 250,000 ₸',
-    brand_dentium_note: 'South Korea · from 160,000 ₸',
-    brand_neodent_note: 'Brazil · from 300,000 ₸',
+    brand_megagen_country: 'South Korea',
+    brand_osstem_country: 'South Korea',
+    brand_dio_country: 'South Korea',
+    brand_straumann_country: 'Switzerland',
+    brand_magicore_country: 'South Korea',
+    brand_dentium_country: 'South Korea',
+    brand_neodent_country: 'Brazil',
     nav_home: 'Home',
     nav_about: 'About Us',
     nav_services: 'Services',
@@ -980,6 +980,7 @@ function setLang(lang) {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
   if (typeof refreshBranchContacts === 'function') refreshBranchContacts();
+  if (typeof syncImplantPrices === 'function') syncImplantPrices();
   if (typeof refreshImplantModal === 'function') refreshImplantModal();
 }
 

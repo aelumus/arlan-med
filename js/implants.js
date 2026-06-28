@@ -3,13 +3,13 @@
    ============================================= */
 
 const IMPLANTS = [
-  { id: 'megagen',   name: 'MegaGen',   flag: '🇰🇷', noteKey: 'brand_megagen_note',   image: 'img/implants/megagen.jpeg',   price: 200000 },
-  { id: 'osstem',    name: 'Osstem',    flag: '🇰🇷', noteKey: 'brand_osstem_note',    image: 'img/implants/osstem.jpeg',    price: 150000 },
-  { id: 'dio',       name: 'DIO',       flag: '🇰🇷', noteKey: 'brand_dio_note',       image: 'img/implants/dio.jpeg',       price: 110000 },
-  { id: 'straumann', name: 'Straumann', flag: '🇨🇭', noteKey: 'brand_straumann_note', image: 'img/implants/straumann.webp', price: 350000 },
-  { id: 'magicore',  name: 'Magicore',  flag: '🇰🇷', noteKey: 'brand_magicore_note',  image: 'img/implants/magicore.jpeg',  price: 250000 },
-  { id: 'dentium',   name: 'Dentium',   flag: '🇰🇷', noteKey: 'brand_dentium_note',   image: 'img/implants/dentium.jpeg',   price: 160000 },
-  { id: 'neodent',   name: 'Neodent',   flag: '🇧🇷', noteKey: 'brand_neodent_note',   image: 'img/implants/neodent.jpeg',   price: 300000 },
+  { id: 'megagen',   name: 'MegaGen',   flag: '🇰🇷', countryKey: 'brand_megagen_country',   image: 'img/implants/megagen.jpeg',   price: 200000 },
+  { id: 'osstem',    name: 'Osstem',    flag: '🇰🇷', countryKey: 'brand_osstem_country',    image: 'img/implants/osstem.jpeg',    price: 150000 },
+  { id: 'dio',       name: 'DIO',       flag: '🇰🇷', countryKey: 'brand_dio_country',       image: 'img/implants/dio.jpeg',       price: 110000 },
+  { id: 'straumann', name: 'Straumann', flag: '🇨🇭', countryKey: 'brand_straumann_country', image: 'img/implants/straumann.webp', price: 350000 },
+  { id: 'magicore',  name: 'Magicore',  flag: '🇰🇷', countryKey: 'brand_magicore_country',  image: 'img/implants/magicore.jpeg',  price: 250000 },
+  { id: 'dentium',   name: 'Dentium',   flag: '🇰🇷', countryKey: 'brand_dentium_country',   image: 'img/implants/dentium.jpeg',   price: 160000 },
+  { id: 'neodent',   name: 'Neodent',   flag: '🇧🇷', countryKey: 'brand_neodent_country',   image: 'img/implants/neodent.jpeg',   price: 300000 },
 ];
 
 const IMPLANT_TEXT = {
@@ -92,12 +92,33 @@ const IMPLANT_TEXT = {
   },
 };
 
-function implantNoteText(implant) {
-  return typeof t === 'function' ? t(implant.noteKey) : implant.noteKey;
-}
-
 function formatPrice(n) {
   return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+
+function formatImplantPrice(implant) {
+  const lang = typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'ru';
+  const formatted = formatPrice(implant.price);
+  if (lang === 'kz') return `${formatted} ₸-дан`;
+  if (lang === 'en') return `from ${formatted} ₸`;
+  const from = typeof t === 'function' ? t('impl_price_from') : 'от';
+  return `${from} ${formatted} ₸`;
+}
+
+function implantNoteText(implant) {
+  const country = typeof t === 'function' ? t(implant.countryKey) : '';
+  return `${country} · ${formatImplantPrice(implant)}`;
+}
+
+function syncImplantPrices() {
+  IMPLANTS.forEach(implant => {
+    document.querySelectorAll(`[data-brand-price="${implant.id}"]`).forEach(el => {
+      el.textContent = formatImplantPrice(implant);
+    });
+    document.querySelectorAll(`[data-implant="${implant.id}"] .brand-card__note`).forEach(el => {
+      el.textContent = implantNoteText(implant);
+    });
+  });
 }
 
 let activeImplantId = null;
@@ -141,10 +162,7 @@ function openImplantModal(id) {
     list.innerHTML = (text?.benefits || []).map(b => `<li>${b}</li>`).join('');
   }
   if (outro) outro.textContent = text?.outro || '';
-  if (price) {
-    const fromLabel = typeof t === 'function' ? t('impl_price_from') : 'от';
-    price.textContent = `${fromLabel} ${formatPrice(implant.price)} ₸`;
-  }
+  if (price) price.textContent = formatImplantPrice(implant);
   if (cta) cta.dataset.service = 'Имплантация';
 
   overlay.classList.add('open');
@@ -162,6 +180,7 @@ function closeImplantModal() {
 }
 
 function refreshImplantModal() {
+  syncImplantPrices();
   if (activeImplantId) openImplantModal(activeImplantId);
 }
 
@@ -172,7 +191,7 @@ function initImplants() {
       <button type="button" class="brand-card reveal" data-implant="${b.id}" aria-label="${b.name}">
         <div class="brand-card__flag">${b.flag}</div>
         <div class="brand-card__name">${b.name}</div>
-        <div class="brand-card__note" data-i18n="${b.noteKey}">${implantNoteText(b)}</div>
+        <div class="brand-card__note">${implantNoteText(b)}</div>
         <div class="brand-card__more" data-i18n="brand_more">Подробнее →</div>
       </button>`).join('');
   }
@@ -194,10 +213,13 @@ function initImplants() {
     closeImplantModal();
     if (typeof window.openModal === 'function') window.openModal('', 'Имплантация');
   });
+
+  syncImplantPrices();
 }
 
 document.addEventListener('DOMContentLoaded', initImplants);
 window.openImplantModal = openImplantModal;
 window.closeImplantModal = closeImplantModal;
 window.refreshImplantModal = refreshImplantModal;
+window.syncImplantPrices = syncImplantPrices;
 window.IMPLANTS = IMPLANTS;
