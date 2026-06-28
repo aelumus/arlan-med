@@ -484,8 +484,22 @@ button.brand-card {
 }
 .implant-modal__close:hover { background: #fee2e2; color: #ef4444; }
 .implant-modal__grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 0; }
-.implant-modal__media { background: var(--c-bg-2); min-height: 280px; }
-.implant-modal__media img { width: 100%; height: 100%; object-fit: cover; min-height: 280px; }
+.implant-modal__media {
+  background: var(--c-bg-2);
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.75rem 1.5rem;
+}
+.implant-modal__media img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(400px, 52vh);
+  object-fit: contain;
+  object-position: center;
+}
 .implant-modal__body { padding: 2rem 2rem 2.25rem; overflow-y: auto; }
 .implant-modal__meta { font-size: .78rem; font-weight: 600; color: var(--c-primary); margin-bottom: .35rem; }
 .implant-modal__title { font-size: 1.45rem; font-weight: 900; color: var(--c-dark); margin-bottom: .85rem; line-height: 1.2; }
@@ -499,7 +513,8 @@ button.brand-card {
 }
 @media (max-width: 768px) {
   .implant-modal__grid { grid-template-columns: 1fr; }
-  .implant-modal__media img { min-height: 220px; max-height: 260px; }
+  .implant-modal__media { padding: 1.25rem 1rem; min-height: 200px; }
+  .implant-modal__media img { max-height: 220px; }
   .implant-modal__body { padding: 1.5rem; }
 }
 
